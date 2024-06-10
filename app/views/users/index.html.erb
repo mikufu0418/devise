@@ -1,0 +1,28 @@
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-info">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<h1>ユーザー一覧</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th> メールアドレス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, user == current_user ? mypage_path : user_path(user) %></td>
+          
+          <td><%= user.email %></td>
+        </tr>
+    <% end %>
+  </tbody>
+</table>
+
+

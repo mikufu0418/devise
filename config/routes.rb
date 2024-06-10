@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
+  get 'users/index'
+ 
+  get "/users/:id" => "users#show"
+  get 'users/:id/edit', to: 'users#edit', as: 'edit_post'
+  post 'users', to: 'users#create'
+  patch "/users/:id" => "users#update"
   devise_for :users
+  resources :users 
 
   get :toppage, to: 'toppage#index'
   get :mypage, to: 'mypage#index'
@@ -11,5 +18,5 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  # root "posts#index"
+  # root "users#index"
 end
