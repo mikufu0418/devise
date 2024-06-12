@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
-  get 'users/index'
+  get 'posts/new'
+  get 'posts/index'
+  get 'posts/show'
+  # get 'users/index'
  
-  get "/users/:id" => "users#show"
-  get 'users/:id/edit', to: 'users#edit', as: 'edit_post'
-  post 'users', to: 'users#create'
-  patch "/users/:id" => "users#update"
+  # get "/users/:id" => "users#show"
+  # get 'users/:id/edit', to: 'users#edit', as: 'edit_post'
+  # post 'users', to: 'users#create'
+  # patch "/users/:id" => "users#update"
   devise_for :users
   resources :users 
-
+  resources :posts
   get :toppage, to: 'toppage#index'
   get :mypage, to: 'mypage#index'
   

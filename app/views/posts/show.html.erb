@@ -1,0 +1,9 @@
+
+<h2>投稿詳細</h2>
+<p><%= @post.content %></p>
+<p>
+    <% if @post && @post.photo.attached? %>
+    <%= image_tag @post.thumbnail([600, 600]) %>
+    <% end %>       
+</p>
+<%= link_to "一覧へ", posts_path %>

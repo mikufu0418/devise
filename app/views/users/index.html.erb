@@ -4,6 +4,15 @@
     <%= flash[:notice] %>
   </div>
 <% end %>
+
+<div class="alert alert-info" style="padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1; text-align: center; font-size: 18px;">
+  <% if user_signed_in? %>
+     <% welcome_message = "ようこそ #{link_to current_user.name, mypage_path} さん" %>
+    <%= welcome_message.html_safe %>
+  <% end %>
+</div>
+
+
 <h1>ユーザー一覧</h1>
 
 <table>
@@ -11,6 +20,7 @@
     <tr>
       <th>ユーザー名</th>
       <th> メールアドレス</th>
+      <th>アイコン</th>
     </tr>
   </thead>
 
@@ -20,6 +30,16 @@
           <td><%= link_to user.name, user == current_user ? mypage_path : user_path(user) %></td>
           
           <td><%= user.email %></td>
+
+          
+          <td>
+          <% if user && user.photo.attached? %>
+         <%= image_tag user.thumbnail([200, 200]) %>
+          <% end %>
+          </td>
+       
+
+
         </tr>
     <% end %>
   </tbody>

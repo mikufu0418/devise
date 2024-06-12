@@ -1,3 +1,10 @@
+<div class="alert alert-info" style="padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1; text-align: center; font-size: 18px;">
+  <% if user_signed_in? %>
+     <% welcome_message = "ようこそ #{link_to current_user.name, mypage_path} さん" %>
+    <%= welcome_message.html_safe %>
+  <% end %>
+</div>
+
 <h1>編集</h1>
 
 <%= form_with(model: @user, url: user_path(@user), local: true) do |form| %>
@@ -16,8 +23,8 @@
   <div class="field">
     <%= form.label :name, "名前" %>
     <%= form.text_field :name %>
-    <%= form.label :email, "メール" %>
-    <%= form.text_area :email %>
+    <%= form.label :photo, "アイコン" %>
+    <%= form.file_field :photo %>
   </div>
 
   <div class="actions">
@@ -25,4 +32,3 @@
   </div>
 <% end %>
 
-<p><%= link_to 'マイページ', mypage_path(@user) %></P>

@@ -1,1 +1,38 @@
-show
+
+<div class="alert alert-info" style="padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; color: #31708f; background-color: #d9edf7; border-color: #bce8f1; text-align: center; font-size: 18px;">
+  <% if user_signed_in? %>
+     <% welcome_message = "ようこそ #{link_to current_user.name, mypage_path} さん" %>
+    <%= welcome_message.html_safe %>
+  <% end %>
+</div>
+
+<h1> 詳細ページ </h1>
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー名</th>
+      <th>メールアドレス</th>
+    </tr>
+  </thead>
+
+  <tbody>
+        <tr>
+        
+
+          <td><%= @user.name %></td>
+          
+          <td><%= @user.email %></td>
+
+          <td>
+            <% if @user && @user.photo.attached? %>
+            <%= image_tag @user.thumbnail([400, 400]) %>
+          <% end %>
+          </td>
+
+
+
+        </tr>
+  </tbody>
+</table>
+
+<%= link_to 'ユーザー一覧', users_path %>
